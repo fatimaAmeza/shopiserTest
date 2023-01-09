@@ -13,35 +13,33 @@ public class Index {
 	WebDriverWait wait;
 	WebElement aa;
 	@FindBy(xpath = "//section[@class='products-grid']//div[2]//div[2]//div[1]//div[1]//a[1]")  
-	public WebElement buttonAddPanier;
+	private WebElement buttonAddPanier;
 	
 	@FindBy(xpath = "//div[@id='miniCartSummary']//a[@href='#']")  
-	public WebElement buttonPanier;
+	private WebElement buttonPanier;
 	
 	@FindBy (xpath="//a[normalize-space()='Paiement']")
-	public WebElement buttonEnterPanier;
+	private WebElement buttonEnterPanier;
 
 	@FindBy (xpath="//*[@id=\"miniCartSummary\"]/a")
-	public WebElement panierMouseHover;
+	private WebElement panierMouseHover;
 	
 	
 	public void ajoutProduitAuPanier(WebDriver driver) {
-		//Explicit wait
-		//wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		buttonAddPanier.click();
-		//return PageFactory.initElements(driver, Panier.class);
-		//wait.until(ExpectedConditions.elementToBeClickable(buttonEnterPanier));
-		
-		
     }
 	
 	public Panier clickEnterPanier(WebDriver driver) {
-		//buttonPanier.click();
 
 		Actions action = new Actions(driver);
 		action.moveToElement(panierMouseHover).perform();
-		buttonEnterPanier.click();
+		try {
+			Thread.sleep(6000);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+				}
 
+		buttonEnterPanier.click();
 		return PageFactory.initElements(driver, Panier.class);
 		}
 	

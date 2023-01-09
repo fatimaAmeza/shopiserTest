@@ -1,6 +1,5 @@
 package ql;
 
-
 import java.time.Duration;
 
 import org.junit.After;
@@ -14,24 +13,23 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 public class AppTestShopizer {
 
 	WebDriver driver;
 	WebDriverWait wait;
-	
-	
-	
-	
+	String titre;
+
+
 	@Before
 	public void setup() {
-//Instancier le driver
 		System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
 		driver = new ChromeDriver();
+		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-		//wait = new WebDriverWait(driver, 15);
-		// System.setProperty("webdriver.gecko.driver", "src/main/resources/driver/geckodriver.exe");
-		// driver = new FirefoxDriver();
-		
+
 	}
 
 	//@After
@@ -41,20 +39,43 @@ public class AppTestShopizer {
 	//}
 
 	@Test
-	public void testAppliShopizer() {
+	public void testAppliShopizer() throws InterruptedException {
 
-		driver.get("http://192.168.102.169:8080/");
-		//wait = new WebDriverWait(driver, 15);
-		 wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-		
-		
-		// instanciation de la pageIndex
+		driver.get("http://192.168.102.150:8080/");
+		wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+
+		// instanciation de la page_index
 		Index page_index = PageFactory.initElements(driver, Index.class);
+		titre = driver.getTitle();
+		assertEquals("Vintage Bags - Shopizer demo", titre);
+
+		//Appel à la methode ajoutProduitAuPanier
 		page_index.ajoutProduitAuPanier(driver);
-		
+
+		// instanciation de la page_panier
 		Panier page_panier = page_index.clickEnterPanier(driver);
-		wait.until(ExpectedConditions.visibilityOf(page_panier.mainMenu));
-		
+
+		//Appel à la methode doublerCommande
+		page_panier.doublerCommande(driver);
+		//assertTrue(page_panier.verifPanier());
+
+
+        //Appel à la methode recalculer
+		page_panier.recalculer();
+		assertEquals(page_panier.verifTotal(),page_panier.converTotal(),0.01);
+
+		//Appel à la methode clickEffectuerPaiement
+		page_panier.clickEffectuerPaiement(driver);
+		// instanciation de la page_paiement
+		Paiement page_paiement = PageFactory.initElements(driver, Paiement.class);
+
+
+
+
+
+
+
+
 		
 		
 
