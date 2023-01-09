@@ -43,8 +43,7 @@ public class AppTestShopizer {
 	@Test
 	public void testAppliShopizer() {
 
-		driver.get("http://192.168.1.120:8080/");
-		// driver.get("https://petstore.octoperf.com/");
+		driver.get("http://192.168.102.169:8080/");
 		//wait = new WebDriverWait(driver, 15);
 		 wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 		
