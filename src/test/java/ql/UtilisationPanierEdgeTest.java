@@ -4,7 +4,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -19,8 +22,8 @@ public class UtilisationPanierFirefoxTest {
 
 	@Before
 	public void setup() {
-		System.setProperty("webdriver.gecko.driver", "src/main/resources/drivers/geckodriver.exe");
-		driver = new FirefoxDriver();
+		System.setProperty("webdriver.edge.driver", "src/main/resources/drivers/msedgedriver.exe");
+		driver = new EdgeDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
 
