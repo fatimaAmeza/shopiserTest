@@ -23,27 +23,30 @@ public class Index {
 
 	@FindBy (xpath="//*[@id=\"miniCartSummary\"]/a")
 	private WebElement panierMouseHover;
+<<<<<<< HEAD
 
 	@FindBy (xpath="//*[@id=\"main_h\"]/div/div/div/div/nav/ul/li[2]/a")
 	private WebElement boutonTables;
 
+=======
+	
+	
+>>>>>>> 247fa01dd70e855927bc1949803043793ea66a65
 	public void ajoutProduitAuPanier(WebDriver driver) {
-		//Explicit wait
-		//wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		buttonAddPanier.click();
-		//return PageFactory.initElements(driver, Panier.class);
-		//wait.until(ExpectedConditions.elementToBeClickable(buttonEnterPanier));
-		
-		
     }
 	
 	public Panier clickEnterPanier(WebDriver driver) {
-		//buttonPanier.click();
 
 		Actions action = new Actions(driver);
 		action.moveToElement(panierMouseHover).perform();
-		buttonEnterPanier.click();
+		try {
+			Thread.sleep(6000);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+				}
 
+		buttonEnterPanier.click();
 		return PageFactory.initElements(driver, Panier.class);
 	}
 
