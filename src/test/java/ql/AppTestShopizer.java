@@ -14,6 +14,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static org.junit.Assert.assertTrue;
+
 public class AppTestShopizer {
 
 	WebDriver driver;
@@ -43,17 +45,15 @@ public class AppTestShopizer {
 	@Test
 	public void testAppliShopizer() {
 
-		driver.get("http://192.168.102.169:8080/");
+		driver.get("http://192.168.102.150:8080/");
 		//wait = new WebDriverWait(driver, 15);
-		 wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-		
-		
+		wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 		// instanciation de la pageIndex
 		Index page_index = PageFactory.initElements(driver, Index.class);
 		page_index.ajoutProduitAuPanier(driver);
 		
 		Panier page_panier = page_index.clickEnterPanier(driver);
-		wait.until(ExpectedConditions.visibilityOf(page_panier.mainMenu));
+		//wait.until(ExpectedConditions.visibilityOf(page_panier.mainMenu));
 		
 		
 		

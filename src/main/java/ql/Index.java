@@ -13,18 +13,20 @@ public class Index {
 	WebDriverWait wait;
 	WebElement aa;
 	@FindBy(xpath = "//section[@class='products-grid']//div[2]//div[2]//div[1]//div[1]//a[1]")  
-	public WebElement buttonAddPanier;
+	private WebElement buttonAddPanier;
 	
 	@FindBy(xpath = "//div[@id='miniCartSummary']//a[@href='#']")  
-	public WebElement buttonPanier;
+	private WebElement buttonPanier;
 	
 	@FindBy (xpath="//a[normalize-space()='Paiement']")
-	public WebElement buttonEnterPanier;
+	private WebElement buttonEnterPanier;
 
 	@FindBy (xpath="//*[@id=\"miniCartSummary\"]/a")
-	public WebElement panierMouseHover;
-	
-	
+	private WebElement panierMouseHover;
+
+	@FindBy (xpath="//*[@id=\"main_h\"]/div/div/div/div/nav/ul/li[2]/a")
+	private WebElement boutonTables;
+
 	public void ajoutProduitAuPanier(WebDriver driver) {
 		//Explicit wait
 		//wait = new WebDriverWait(driver, Duration.ofSeconds(5));
@@ -43,8 +45,11 @@ public class Index {
 		buttonEnterPanier.click();
 
 		return PageFactory.initElements(driver, Panier.class);
-		}
-	
+	}
+
+	public void tables(WebDriver driver){
+		boutonTables.click();
+	}
 	
 	
 	
