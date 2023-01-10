@@ -22,7 +22,6 @@ public class AppTestShopizer {
 
 	WebDriver driver;
 	WebDriverWait wait;
-	String titre;
 
 
 	@Before
@@ -54,7 +53,7 @@ public class AppTestShopizer {
 		// instanciation de la page_index
 
 		Index page_index = new Index(driver, wait);
-		titre = driver.getTitle();
+		String titre = driver.getTitle();
 		assertEquals("Importa", titre);
 
 		//Appel à la methode ajoutProduitAuPanier
