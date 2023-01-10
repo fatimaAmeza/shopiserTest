@@ -11,6 +11,9 @@ import java.time.Duration;
 
 public class Panier {
 
+	WebDriverWait wait;
+	WebDriver driver;
+
 	@FindBy(xpath = "//div[@id='MainImageContent']")
 	private WebElement mainMenu;
 	
@@ -20,16 +23,22 @@ public class Panier {
 	@FindBy(xpath = "//a[normalize-space()='Recalculer']")
 	private WebElement buttonRecalculer;
 	
-	@FindBy(xpath = "//td[@data-th='Prix']//strong[contains(text(),'78,00 USD')]")
+	@FindBy(xpath = "//td[@data-th=\"Prix\"]/strong")
 	private WebElement prixChamp;
 	
-	@FindBy(xpath = "//strong[normalize-space()='156,00 USD']")
+	@FindBy(xpath = "//td[@data-th=\"Total\"]/strong")
 	private WebElement totalChamp;
 	
 	@FindBy(xpath = "//a[normalize-space()='Effectuer le paiement']")
 	private WebElement buttonPaiement;
+
+	public Panier(WebDriver driver, WebDriverWait wait){
+		PageFactory.initElements(driver, this);
+		this.driver = driver;
+		this.wait = wait;
+	}
 	
-	public void doublerCommande(WebDriver driver) {
+	public void doublerCommande() {
 
 		quantitArticle.clear();
 		quantitArticle.sendKeys("2");
@@ -39,34 +48,34 @@ public class Panier {
 
 	public void recalculer() {
 		buttonRecalculer.click();
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
 	}
+
 	public boolean verifPanier() {
 
 		return (quantitArticle.getText() == "2");
 	}
 
 	public float verifTotal() {
-		String prixUnitaire = prixChamp.getText();
-		String prixUnitaire1 = prixUnitaire.replace("USD", "  ");
-		String prixUnitaire2 = prixUnitaire1.replace(",", ".");
-		float prixUnitaire3 = Float.parseFloat(prixUnitaire2);
-		float prix = prixUnitaire3*2;
+		String prixUnitaire = prixChamp.getText().replace("US$", "");
+		float prix = Float.parseFloat(prixUnitaire) * Float.parseFloat(quantitArticle.getAttribute("value"));
 		return (prix);
 	}
 	public float converTotal() {
-		String prixTotal = totalChamp.getText();
-		String prixTotal2 = prixTotal.replace("USD", "  ");
-		String prixTotal3 = prixTotal2.replace(",", ".");
-		float prixTotal4 = Float.parseFloat(prixTotal3);
-		return (prixTotal4);
+		String prixTotal = totalChamp.getText().replace("US$", "");
+		float prix = Float.parseFloat(prixTotal);
+		return (prix);
 	}
 	
 
-	public Paiement clickEffectuerPaiement(WebDriver driver) throws InterruptedException {
-		Thread.sleep(1500);
-			buttonPaiement.click();
-
-		return PageFactory.initElements(driver, Paiement.class);
+	public Paiement clickEffectuerPaiement(){
+		wait.until(ExpectedConditions.elementToBeClickable(buttonPaiement));
+		buttonPaiement.click();
+		return new Paiement(driver, wait);
 		}
 	
 	

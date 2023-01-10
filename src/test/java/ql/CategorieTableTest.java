@@ -49,7 +49,7 @@ public class CategorieTableTest {
 		
 		// instanciation de la pageIndex
 		Index page_index = PageFactory.initElements(driver, Index.class); // Instanciation de la page index
-		page_index.tables(driver); // Execution de la fonction tables pour cliquer sur la page
+		page_index.tables(); // Execution de la fonction tables pour cliquer sur la page
 		Tables tables = new Tables(driver, wait); // Instanciation de la page table
 		wait.until(ExpectedConditions.visibilityOf(tables.ajoutPanierProduit1));
 		verifPageTables(); // Pas de test 3 : On vérifie la présence d'élement

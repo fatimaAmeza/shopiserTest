@@ -8,7 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 public class PageProduit1 {
 
     public PageProduit1(WebDriver driver){
-
         PageFactory.initElements(driver, this);
     }
 

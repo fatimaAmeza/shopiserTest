@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Index {
 
 	WebDriverWait wait;
-	WebElement aa;
+	WebDriver driver;
 	@FindBy(xpath = "//section[@class='products-grid']//div[2]//div[2]//div[1]//div[1]//a[1]")  
 	private WebElement buttonAddPanier;
 	
@@ -23,34 +23,31 @@ public class Index {
 
 	@FindBy (xpath="//*[@id=\"miniCartSummary\"]/a")
 	private WebElement panierMouseHover;
-<<<<<<< HEAD
+
 
 	@FindBy (xpath="//*[@id=\"main_h\"]/div/div/div/div/nav/ul/li[2]/a")
 	private WebElement boutonTables;
 
-=======
-	
-	
->>>>>>> 247fa01dd70e855927bc1949803043793ea66a65
-	public void ajoutProduitAuPanier(WebDriver driver) {
+	public Index(WebDriver driver, WebDriverWait wait){
+		PageFactory.initElements(driver, this);
+		this.wait = wait;
+		this.driver = driver;
+	}
+
+	public void ajoutProduitAuPanier() {
 		buttonAddPanier.click();
     }
 	
-	public Panier clickEnterPanier(WebDriver driver) {
+	public Panier clickEnterPanier() {
 
 		Actions action = new Actions(driver);
 		action.moveToElement(panierMouseHover).perform();
-		try {
-			Thread.sleep(6000);
-		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
-				}
-
+		wait.until(ExpectedConditions.elementToBeClickable(buttonEnterPanier));
 		buttonEnterPanier.click();
-		return PageFactory.initElements(driver, Panier.class);
+		return new Panier(driver, wait);
 	}
 
-	public void tables(WebDriver driver){
+	public void tables(){
 		boutonTables.click();
 	}
 	
