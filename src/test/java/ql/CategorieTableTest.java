@@ -62,7 +62,7 @@ public class CategorieTableTest {
 		PageProduit1 pp1 = tables.clickProduit1(driver);
 		assertEquals(pp1.prix.getText(), prixProduitUn);
 
-		PageProduit1 pageProduit1 = new PageProduit1(driver);
+		PageProduit1 pageProduit1 = new PageProduit1(driver, wait);
 		assertTrue(pageProduit1.boutonAjouterPanier.isDisplayed());
 		assertTrue(pageProduit1.titreProduit.isDisplayed());
 

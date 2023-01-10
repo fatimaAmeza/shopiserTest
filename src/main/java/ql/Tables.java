@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Tables {
 
     WebDriverWait wait;
+    WebDriver driver;
 
     @FindBy(xpath = "//*[@id=\"productsContainer\"]/div[1]/div[1]")
     public WebElement imageProduit1;
@@ -64,6 +65,7 @@ public class Tables {
     public Tables(WebDriver driver, WebDriverWait wait){
         PageFactory.initElements(driver, this);
         this.wait = wait;
+        this.driver = driver;
     }
 
     public String getPrixProduit1(){
@@ -75,7 +77,7 @@ public class Tables {
 
     public PageProduit1 clickProduit1(WebDriver driver){
         titreProduit1.click();
-        return PageFactory.initElements(driver, PageProduit1.class);
+        return new PageProduit1(driver, wait);
     }
 
 }
