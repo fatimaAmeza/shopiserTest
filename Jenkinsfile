@@ -13,8 +13,10 @@ pipeline {
         
         stage('Selenium Test Job') {
             steps {
-                 sh 'chmod +x driver/chromedriver.exe'
-                 sh 'JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre mvn clean verify surefire-report:report-only'
+                agent {
+                label 'Windows'
+            }
+                 bat 'mvn clean verify surefire-report:report-only'
                 
                 publishHTML target: [
             allowMissing: false,
