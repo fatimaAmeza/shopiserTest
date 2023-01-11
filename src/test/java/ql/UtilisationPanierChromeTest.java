@@ -40,8 +40,6 @@ public class UtilisationPanierChromeTest {
 
 		driver.get("http://192.168.102.169:8080/");
 
-		//wait = new WebDriverWait(driver, 15);
-		wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 		// instanciation de la pageIndex
 
 		wait = new WebDriverWait(driver, Duration.ofSeconds(15));

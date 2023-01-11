@@ -4,7 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -19,8 +19,8 @@ public class UtilisationPanierEdgeTest {
 
 	@Before
 	public void setup() {
-		System.setProperty("webdriver.edge.driver", "src/main/resources/drivers/msedgedriver.exe");
-		driver = new EdgeDriver();
+		System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
+		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
 
@@ -36,9 +36,7 @@ public class UtilisationPanierEdgeTest {
 	public void testAppliShopizer() throws InterruptedException {
 
 		driver.get("http://192.168.102.169:8080/");
-
-		//wait = new WebDriverWait(driver, 15);
-		wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		
 		// instanciation de la pageIndex
 
 		wait = new WebDriverWait(driver, Duration.ofSeconds(15));

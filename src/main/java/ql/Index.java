@@ -35,14 +35,26 @@ public class Index {
 	}
 
 	public void ajoutProduitAuPanier() {
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
+		wait.until(ExpectedConditions.elementToBeClickable(buttonAddPanier));
 		buttonAddPanier.click();
-    }
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
+	}
 	
 	public Panier clickEnterPanier() {
 
 		Actions action = new Actions(driver);
 		wait.until(ExpectedConditions.elementToBeClickable(panierMouseHover));
 		action.moveToElement(panierMouseHover).perform();
+		wait.until(ExpectedConditions.visibilityOf(buttonEnterPanier));
 		wait.until(ExpectedConditions.elementToBeClickable(buttonEnterPanier));
 		buttonEnterPanier.click();
 		return new Panier(driver, wait);
