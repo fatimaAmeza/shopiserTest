@@ -1,10 +1,13 @@
 pipeline {
-    agent any
+    agent none
     tools {
         maven 'localMaven'
     } 
     stages {
         stage('Checkout Selenium') {
+                agent {
+                label 'built-in'
+            }
             steps {
                 echo "-=- Checkout project -=-"
                 git url: 'https://github.com/fatimaAmeza/shopiserTest.git'
