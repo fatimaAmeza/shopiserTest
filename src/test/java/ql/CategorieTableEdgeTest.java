@@ -1,6 +1,7 @@
 package ql;
 
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -31,11 +32,11 @@ public class CategorieTableEdgeTest {
 
 	}
 
-	//@After
+	@After
 
-	//public void teardown() {
-		//driver.quit();
-	//}
+	public void teardown() {
+		driver.quit();
+	}
 
 	@Test
 	public void testAppliShopizer() {

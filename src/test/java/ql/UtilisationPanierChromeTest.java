@@ -2,6 +2,7 @@ package ql;
 
 import java.time.Duration;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -28,16 +29,16 @@ public class UtilisationPanierChromeTest {
 
 	}
 
-	//@After
+	@After
 
-	//public void teardown() {
-		//driver.quit();
-	//}
+	public void teardown() {
+		driver.quit();
+	}
 
 	@Test
 	public void testAppliShopizer() throws InterruptedException {
 
-		driver.get("http://192.168.102.168:8080/");
+		driver.get("http://192.168.102.40:8080/");
 
 		//wait = new WebDriverWait(driver, 15);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(15));
