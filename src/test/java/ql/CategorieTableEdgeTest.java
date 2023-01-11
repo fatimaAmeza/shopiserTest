@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -13,7 +14,7 @@ import java.time.Duration;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 
-public class CategorieTableChromeTest {
+public class CategorieTableEdgeTest {
 
 	WebDriver driver;
 	WebDriverWait wait;
@@ -21,8 +22,8 @@ public class CategorieTableChromeTest {
 	@Before
 	public void setup() {
 //Instancier le driver
-		System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
-		driver = new ChromeDriver();
+		System.setProperty("webdriver.edge.driver", "src/main/resources/drivers/msedgedriver.exe");
+		driver = new EdgeDriver();
 
 		driver.get("http://192.168.102.40:8080/");
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
