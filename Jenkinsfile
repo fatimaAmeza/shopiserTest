@@ -12,10 +12,10 @@ pipeline {
         }
         
         stage('Selenium Test Job') {
-            steps {
-                agent {
+               agent {
                 label 'Windows'
             }
+            steps {
                  bat 'mvn clean verify surefire-report:report-only'
                 
                 publishHTML target: [
