@@ -26,7 +26,7 @@ public class CategorieTableEdgeTest {
 		System.setProperty("webdriver.edge.driver", "src/main/resources/drivers/msedgedriver.exe");
 		driver = new EdgeDriver();
 
-		driver.get("http://192.168.102.40:8080/");
+		driver.get("http://192.168.102.169:8080/");
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
 		wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 

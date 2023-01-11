@@ -38,7 +38,7 @@ public class UtilisationPanierChromeTest {
 	@Test
 	public void testAppliShopizer() throws InterruptedException {
 
-		driver.get("http://192.168.102.40:8080/");
+		driver.get("http://192.168.102.169:8080/");
 
 		//wait = new WebDriverWait(driver, 15);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(15));

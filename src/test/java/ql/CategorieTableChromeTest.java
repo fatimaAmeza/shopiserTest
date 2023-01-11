@@ -25,7 +25,7 @@ public class CategorieTableChromeTest {
 		System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
 		driver = new ChromeDriver();
 
-		driver.get("http://192.168.102.40:8080/");
+		driver.get("http://192.168.102.169:8080/");
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
 		wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
