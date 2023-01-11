@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Checkout Selenium') {
                 agent {
-                label 'built-in'
+                label 'Windows'
             }
             steps {
                 echo "-=- Checkout project -=-"
