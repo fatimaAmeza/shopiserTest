@@ -39,7 +39,7 @@ public class Panier {
 	}
 	
 	public void doublerCommande() {
-
+		wait.until(ExpectedConditions.elementToBeClickable(quantitArticle));
 		quantitArticle.clear();
 		quantitArticle.sendKeys("2");
 
@@ -47,6 +47,7 @@ public class Panier {
 
 
 	public void recalculer() {
+		wait.until(ExpectedConditions.elementToBeClickable(buttonRecalculer));
 		buttonRecalculer.click();
 		try {
 			Thread.sleep(500);

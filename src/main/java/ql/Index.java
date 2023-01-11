@@ -41,6 +41,7 @@ public class Index {
 	public Panier clickEnterPanier() {
 
 		Actions action = new Actions(driver);
+		wait.until(ExpectedConditions.elementToBeClickable(panierMouseHover));
 		action.moveToElement(panierMouseHover).perform();
 		wait.until(ExpectedConditions.elementToBeClickable(buttonEnterPanier));
 		buttonEnterPanier.click();

@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Tables {
@@ -76,6 +77,7 @@ public class Tables {
     }
 
     public PageProduit1 clickProduit1(WebDriver driver){
+        wait.until(ExpectedConditions.elementToBeClickable(titreProduit1));
         titreProduit1.click();
         return new PageProduit1(driver, wait);
     }
